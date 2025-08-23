@@ -5,88 +5,87 @@ import { useUserStore } from '../store/userStorage';
 const router = useRouter()
 
 
+const userPassWord = ref("");
+const userName = ref("");
 
-// const isRememberMe = ref(false);
-// const userPassWord = ref("");
-// const userName = ref("");
-import { defineStore } from 'pinia'
-import Success from './Success.vue';
+
 const isRememberMe = ref(false);
 const userStore = useUserStore();
-const userName = ref(userStore.user);
-const userPassWord = ref(userStore.password);
+const isLogin = ref(userStore.isLogin || localStorage.getItem('auth'));
+const loginUserInfo = ref(userStore.userInfo);
 
-const isLogin = ref(localStorage.getItem("user"));
+const loginpass = true
+
+const checkLoginState = () => {
+    return localStorage.getItem('isLogin') === 'true'
+}
+console.log(isLogin.value);
+console.log(localStorage.getItem('auth'))
 
 // LOGIN AUTH should be rewrite here:
 const login = () => {
-
-    if (isLogin.value){
+    // This is has logined.
+    if (isLogin.value) {
         router.push({ name: "Success" })
+        console.log("Already login")
+        console.log(isLogin.value);
     }
-    else if (userName.value == "Nul4i" &&  userPassWord.value =="123"){
-        isLogin.value = true;
-        userPassWord.value=""
-        
-        router.push({ name: "Success" })
-        if (!isRememberMe){
-            localStorage.removeItem("user")
+    // Not has login. Try to login.
+    // LOGIN AUTH LOGIC
+    if (!isLogin.value) {
+        if (loginpass) {
+            const token = 'random_generated_token'; // 生成随机token
+            userStore.setToken(token, isRememberMe.value);
+            isLogin.value = true;
+            router.push({ name: "Success" });
+            console.log(isLogin.value);
+        } else {
+            console.log(isLogin.value);
+            alert("Wrong pwd");
         }
     }
-    else{
-        alert("Wrong pwd")
-    }
 }
 
-const switchUser = ()=>{
-    isLogin.value = !isLogin.value;
-    localStorage.removeItem("user")
-    userPassWord.value=""
+const switchUser = () => {
+    isLogin.value = false;
+    loginUserInfo.value = null;
+    userStore.clearAuth()
 }
-
-const updateUser = () => {
-  userStore.user = userName.value;
-};
-
-const updatePassword = () => {
-  userStore.password = userPassWord.value;
-};
 
 </script>
 <template>
 
     <div id="login" class="aspect-16-9 flex h-[80%] items-center rounded-2xl justify-center shadow-2xl bg-white">
-        <div id="information" class="w-2/3 h-full flex flex-col rounded-l-2xl items-center justify-center text-grey">
+        <div id="information"
+            class="w-2/3 h-full flex flex-col rounded-l-2xl items-center justify-center text-grey transition-all duration-300 ease-in-out">
             <div class=" bg-gradient-to-r from-blue-500 to-green-500 blur-[70px] w-2/5 h-1/5 relative flex">
             </div>
-            <div class="absolute" v-if="isLogin">
+            <div class="absolute ease-in-out duration-500" v-if="isLogin">
                 <h1 class="text-6xl font-bold">Welcome back.</h1>
-                <h1 class="text-4xl" >Ready to explore?</h1>
+                <h1 class="text-4xl">Ready to explore?</h1>
             </div>
-            <div class="absolute" v-if="!isLogin">
+            <div class="absolute ease-in-out duration-500" v-if="!isLogin">
                 <h1 class="text-6xl font-bold">Welcome.</h1>
-                <h1 class="text-4xl" >Sign in to explore NUL4i.</h1>
+                <h1 class="text-4xl">Sign in to explore NUL4i.</h1>
             </div>
         </div>
         <div id="logins" class="w-1/3  h-full justify-center flex flex-col items-center" v-if="!isLogin">
-
-
-
             <form action="" class="text-xl flex flex-col justify-center h-[30%] text-grey w-[80%]">
                 <p class="px-4 text-2xl py-4 text-gray-600">Username:</p>
                 <input class="text-xl bg-gray-100 rounded-xl w-full h-1/5  px-5" type="text" v-model="userName"
                     placeholder="Please Enter Username"></input>
                 <p class="px-4 text-2xl py-4 text-gray-600">Password:</p>
-                <input class="text-xl bg-gray-100 rounded-xl w-full h-1/5  px-5" type="password" name="" id="" @input="updateUser"
-                    v-model="userPassWord" placeholder="Please Enter Password"></input>
+                <input class="text-xl bg-gray-100 rounded-xl w-full h-1/5  px-5" type="password" name="" id=""
+                    @input="updateUser" v-model="userPassWord" placeholder="Please Enter Password" required></input>
                 <div id="remember" class="flex px-2 py-3">
-                    <input type="checkbox" name="rememberme" id="rememberme" v-model="isRememberMe" @input="updatePassword">
+                    <input type="checkbox" name="rememberme" id="rememberme" v-model="isRememberMe"
+                        @input="updatePassword" required>
                     <p class="mx-2 text-sm text-gray-500">Remember Me</p>
                 </div>
             </form>
             <div class="w-[80%] flex items-center justify-center h-[20%] flex-col">
                 <button @click="login"
-                    class=" h-[35%] shadow-2xl w-full text-white bg-blue-500 shadow-blue-500/50 rounded-2xl text-xl cursor-pointer">SIGN
+                    class=" h-[35%] shadow-2xl w-full text-white bg-blue-500 shadow-blue-500/50 rounded-2xl text-xl cursor-pointer hover:scale-[98%] transition-all duration-300">SIGN
                     IN</button>
                 <p class="py-2">---------------------------or---------------------------</p>
                 <div id="othersLogin" class="flex w-full h-[70%] justify-around">
@@ -100,20 +99,26 @@ const updatePassword = () => {
 
         <div id="logined" class="w-1/3  h-full justify-center flex flex-col items-center" v-if="isLogin">
             <div id="loginElement" class="flex w-[80%]">
-                <div id="avatar" class="w-[20%] aspect-square rounded-2xl bg-gradient-to-r from-green-300 to-blue-500 blur-xs shadow-2xl shadow-blue-800"></div>
+                <div id="avatar"
+                    class="w-[20%] aspect-square rounded-2xl bg-gradient-to-r from-green-300 to-blue-500 blur-xs shadow-2xl shadow-blue-800">
+                </div>
                 <div id="loginUserInfo" class="w-[80%] flex flex-col ml-5 justify-center">
                     <p class="text-2xl font-bold">Welcome back,</p>
                     <div class="flex mt-2  ">
                         <p class="text-md">Current User:</p>
-                        <p class="text-md ml-2 font-bold">NUL4i</p>  
+                        <p class="text-md ml-2 font-bold">NUL4i</p>
                     </div>
                 </div>
             </div>
-            
-            
+
+
             <div id="controls" class="flex w-[80%] h-[5%] mt-8">
-                <button class="w-5/11 bg-blue-500 text-white text-xl rounded-xl shadow-2xl shadow-blue-500 cursor-pointer" @click="login">Sign in</button>
-                <button class="w-4/11 bg-gray-100 text-gray-600 text-xl ml-5 rounded-xl cursor-pointer" @click="switchUser">Switch User</button>
+                <button
+                    class="w-5/11 bg-blue-500 text-white text-xl rounded-xl  cursor-pointer shadow-2xl shadow-blue-500 hover:scale-[105%] duration-300 transition-all"
+                    @click="login">Sign in</button>
+                <button
+                    class="w-4/11 bg-gray-100 text-gray-600 text-xl ml-5 rounded-xl cursor-pointer hover:shadow-xl hover:scale-[103%] duration-300 transition-all"
+                    @click="switchUser">Switch User</button>
             </div>
         </div>
     </div>
