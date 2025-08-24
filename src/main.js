@@ -16,7 +16,7 @@ pinia.use(piniaPluginPersistedstate)
 const routes = [
     {
         path: '/',
-        component: Login,
+        component: Success,
         name: '/'
     },
     {

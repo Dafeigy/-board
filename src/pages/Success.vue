@@ -12,20 +12,21 @@ const backhome = () => {
 </script>
 <template>
     <div class="aspect-16-9 text-white h-[80%] items-center justify-center flex shadow-2xl fadein">
-        <div id="left" class="flex w-1/10 h-full bg-[#262436] rounded-l-2xl flex-col items-center justify-between">
-            <div id="avatar" class="aspect-square rounded-full w-3/7 bg-gradient-to-r from-blue-500 to-green-500 mt-[20%] shadow-2xl shadow-blue-400"></div>
+        <div id="left" class="flex w-1/10 h-full bg-[#171527] rounded-l-2xl flex-col items-center justify-between">
+            <div id="avatar"
+                class="aspect-square rounded-full w-3/7 bg-gradient-to-b from-blue-500 to-green-500 mt-[20%] shadow-2xl shadow-blue-400">
+            </div>
             <div id="leftpannels" class="flex text-[#3d3c4c] flex-col w-full h-[50%] items-center">
                 <div
-                    class="overviews aspect-square h-1/8 flex mt-2 justify-center items-center rounded-2xl cursor-pointer hover:bg-[#3b3a4b] hover:text-indigo-300 transition-all ease-in-out duration-200">
+                    class="hover:border hover:text-white hover:border-[#3b394b] hover:bg-gradient-to-b from-[#262537] to-[#272638] rounded-2xl overviews h-1/8 flex mt-4 justify-center items-center aspect-square cursor-pointer transition-all ease-in-out duration-400">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                         stroke="currentColor" class="size-6">
                         <path stroke-linecap="round" stroke-linejoin="round"
                             d="m2.25 12 8.954-8.955c.44-.439 1.152-.439 1.591 0L21.75 12M4.5 9.75v10.125c0 .621.504 1.125 1.125 1.125H9.75v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21h4.125c.621 0 1.125-.504 1.125-1.125V9.75M8.25 21h8.25" />
                     </svg>
-
                 </div>
                 <div
-                    class="overviews aspect-square h-1/8 flex mt-2 justify-center items-center rounded-2xl cursor-pointer hover:bg-[#3b3a4b] hover:text-indigo-300 transition-all ease-in-out duration-200">
+                    class="overviews h-1/8 flex mt-4 justify-center items-center aspect-square cursor-pointer transition-all ease-in-out duration-100">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                         stroke="currentColor" class="size-6">
                         <path stroke-linecap="round" stroke-linejoin="round"
@@ -34,7 +35,7 @@ const backhome = () => {
 
                 </div>
                 <div
-                    class="overviews aspect-square h-1/8 flex mt-2 justify-center items-center rounded-2xl cursor-pointer hover:bg-[#3b3a4b] hover:text-indigo-300 transition-all ease-in-out duration-200">
+                    class="overviews h-1/8 flex mt-4 justify-center items-center aspect-square cursor-pointer transition-all ease-in-out duration-100">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                         stroke="currentColor" class="size-6">
                         <path stroke-linecap="round" stroke-linejoin="round"
@@ -45,7 +46,7 @@ const backhome = () => {
 
                 </div>
                 <div
-                    class="overviews aspect-square h-1/8 flex mt-2 justify-center items-center rounded-2xl cursor-pointer hover:bg-[#3b3a4b] hover:text-indigo-300 transition-all ease-in-out duration-200">
+                    class="overviews h-1/8 flex mt-4 justify-center items-center aspect-square cursor-pointer transition-all ease-in-out duration-100">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                         stroke="currentColor" class="size-6">
                         <path stroke-linecap="round" stroke-linejoin="round"
@@ -54,7 +55,7 @@ const backhome = () => {
 
                 </div>
                 <div
-                    class="overviews aspect-square h-1/8 flex mt-2 justify-center items-center rounded-2xl cursor-pointer hover:bg-[#3b3a4b] hover:text-indigo-300 transition-all ease-in-out duration-200">
+                    class="overviews h-1/8 flex mt-4 justify-center items-center aspect-square cursor-pointer transition-all ease-in-out duration-100">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                         stroke="currentColor" class="size-6">
                         <path stroke-linecap="round" stroke-linejoin="round"
@@ -63,7 +64,7 @@ const backhome = () => {
 
                 </div>
                 <div
-                    class="overviews aspect-square h-1/8 flex mt-2 justify-center items-center rounded-2xl cursor-pointer hover:bg-[#3b3a4b] hover:text-indigo-300 transition-all ease-in-out duration-200">
+                    class="overviews h-1/8 flex mt-4 justify-center items-center aspect-square cursor-pointer transition-all ease-in-out duration-100">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                         stroke="currentColor" class="size-6">
                         <path stroke-linecap="round" stroke-linejoin="round"
@@ -74,8 +75,8 @@ const backhome = () => {
                 </div>
             </div>
             <div id="info" class=" w-full h-[15%] items-center flex flex-col text-[#3d3c4c] mb-8">
-                <div id="about" 
-                    class="aspect-square h-5/12 flex mt-2 justify-center items-center rounded-2xl cursor-pointer hover:bg-[#3b3a4b] hover:text-indigo-300  transition-all ease-in-out duration-200">
+                <div id="about"
+                    class="aspect-square h-5/12 flex mt-2 justify-center items-center rounded-sm cursor-pointer  transition-all ease-in-out duration-200">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                         stroke="currentColor" class="size-6">
                         <path stroke-linecap="round" stroke-linejoin="round"
@@ -84,7 +85,7 @@ const backhome = () => {
 
                 </div>
                 <div id="logout" @click="backhome"
-                    class="aspect-square h-5/12 flex mt-2 justify-center items-center rounded-2xl cursor-pointer hover:bg-[#3b3a4b] hover:text-indigo-300  transition-all ease-in-out duration-200">
+                    class="aspect-square h-5/12 flex mt-2 justify-center items-center rounded-sm cursor-pointer  transition-all ease-in-out duration-200">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                         stroke="currentColor" class="size-6">
                         <path stroke-linecap="round" stroke-linejoin="round"
@@ -95,10 +96,10 @@ const backhome = () => {
             </div>
         </div>
         <div id="middle" class="flex w-6/10 h-full bg-[#2e2c3c] justify-center items-center text-8xl">
-            <div class=" animate-pulse text-indigo-300">
+            <div class="animate-pulse text-indigo-300">
                 TODO
             </div>
-            
+
         </div>
         <div id="right" class="flex w-3/10 h-full bg-[#313041] rounded-r-2xl justify-center items-center flex-col">
             <div id="rtop" class="w-[80%] h-3/20 flex">
@@ -109,7 +110,8 @@ const backhome = () => {
                 <div class="w-1/4 h-[80%] bg-[#373545] rounded-xl flex justify-center items-center">2</div>
                 <div class="w-1/4 h-[80%] bg-[#373545] rounded-xl flex justify-center items-center">3</div>
             </div>
-            <div id="rbtm" class="w-[80%] h-1/2 mt-10 flex justify-center items-center text-4xl rounded-2xl bg-[#373545]">
+            <div id="rbtm"
+                class="w-[80%] h-1/2 mt-10 flex justify-center items-center text-4xl rounded-2xl bg-[#373545]">
                 ...
             </div>
         </div>
@@ -121,13 +123,28 @@ const backhome = () => {
 </template>
 
 <style scoped>
+
+/* .overviews:hover {
+    border-image: linear-gradient(to bottom, rgba(255, 255, 255, 1), rgba(255, 255, 255, 0.1)) 1;
+    border-style: solid;
+    border-width: 2px;
+    border-radius: 16rem;
+    color: white;
+} */
+
 .overviews svg {
     width: 80%;
     height: 40%;
 }
 
+.gradienBorder {
+    background: rgba(255, 255, 255, 0.1);
+    color: aliceblue;
+
+}
+
 .fadein {
-    animation: fadeInAnimation ease 2s;
+    animation: fadeInAnimation ease 0.5s;
     animation-iteration-count: 1;
     animation-fill-mode: forwards;
 }
