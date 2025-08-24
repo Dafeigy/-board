@@ -11,17 +11,12 @@ const userName = ref("");
 
 const isRememberMe = ref(false);
 const userStore = useUserStore();
-const isLogin = ref(userStore.isLogin || localStorage.getItem('auth'));
+const isLogin = ref(userStore.isLogin || localStorage.getItem('auth'))
 const loginUserInfo = ref(userStore.userInfo);
 
 const loginpass = true
-
-const checkLoginState = () => {
-    return localStorage.getItem('isLogin') === 'true'
-}
 console.log(isLogin.value);
 console.log(localStorage.getItem('auth'))
-
 // LOGIN AUTH should be rewrite here:
 const login = () => {
     // This is has logined.
@@ -55,21 +50,23 @@ const switchUser = () => {
 </script>
 <template>
 
-    <div id="login" class="aspect-16-9 flex h-[80%] items-center rounded-2xl justify-center shadow-2xl bg-white">
-        <div id="information"
-            class="w-2/3 h-full flex flex-col rounded-l-2xl items-center justify-center text-grey transition-all duration-300 ease-in-out">
-            <div class=" bg-gradient-to-r from-blue-500 to-green-500 blur-[70px] w-2/5 h-1/5 relative flex">
+    <div id="login"
+        class="transition-all aspect-16-9 flex h-[80%] items-center rounded-2xl justify-center shadow-2xl bg-white delay-50 duration-300 ease-in-out">
+        <div id="information" class=" w-2/3 h-full flex flex-col rounded-l-2xl items-center justify-center text-grey">
+            <div class="bg-gradient-to-r from-blue-500 to-green-500 blur-[70px] w-2/5 h-1/5 relative flex">
             </div>
-            <div class="absolute ease-in-out duration-500" v-if="isLogin">
-                <h1 class="text-6xl font-bold">Welcome back.</h1>
-                <h1 class="text-4xl">Ready to explore?</h1>
+            <div class="absolute fadein-short transition-opacity duration-300 ease-in-out opacity-0" v-if="isLogin"
+                v-show="isLogin">
+                <h1 class="text-6xl font-bold opacity-100">Welcome back.</h1>
+                <h1 class="text-4xl opacity-100">Ready to explore?</h1>
             </div>
-            <div class="absolute ease-in-out duration-500" v-if="!isLogin">
-                <h1 class="text-6xl font-bold">Welcome.</h1>
-                <h1 class="text-4xl">Sign in to explore NUL4i.</h1>
+            <div class="absolute fadein-short transition-opacity duration-300 ease-in-out opacity-0" v-if="!isLogin"
+                v-show="!isLogin">
+                <h1 class="text-6xl font-bold opacity-100">Welcome.</h1>
+                <h1 class="text-4xl opacity-100">Sign in to explore NUL4i.</h1>
             </div>
         </div>
-        <div id="logins" class="w-1/3  h-full justify-center flex flex-col items-center" v-if="!isLogin">
+        <div id="logins" class="w-1/3  h-full justify-center flex flex-col items-center fadein" v-if="!isLogin">
             <form action="" class="text-xl flex flex-col justify-center h-[30%] text-grey w-[80%]">
                 <p class="px-4 text-2xl py-4 text-gray-600">Username:</p>
                 <input class="text-xl bg-gray-100 rounded-xl w-full h-1/5  px-5" type="text" v-model="userName"
@@ -89,8 +86,9 @@ const switchUser = () => {
                     IN</button>
                 <p class="py-2">---------------------------or---------------------------</p>
                 <div id="othersLogin" class="flex w-full h-[70%] justify-around">
-                    <button class="w-[48%] px-2 h-[45%] bg-white border  text-xl text-gray"> WeChat</button>
-                    <button class="w-[48%] px-2 h-[45%] bg-white border  text-xl text-gray"> QQ</button>
+                    <button class="w-[48%] px-2 h-[45%] bg-white border  text-xl text-gray" @click="toggle">
+                        WeChat</button>
+                    <button class="w-[48%] px-2 h-[45%] bg-white border  text-xl text-gray" @click="toggle"> QQ</button>
                 </div>
 
             </div>
@@ -114,14 +112,52 @@ const switchUser = () => {
 
             <div id="controls" class="flex w-[80%] h-[5%] mt-8">
                 <button
-                    class="w-5/11 bg-blue-500 text-white text-xl rounded-xl  cursor-pointer shadow-2xl shadow-blue-500 hover:scale-[105%] duration-300 transition-all"
-                    @click="login">Sign in</button>
+                    class="w-5/11 bg-blue-500 text-white text-xl rounded-xl  flex items-center  justify-center cursor-pointer shadow-2xl shadow-blue-500 hover:scale-[105%] duration-300 transition-all"
+                    @click="login">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                        stroke="currentColor" class="size-6">
+                        <path stroke-linecap="round" stroke-linejoin="round"
+                            d="M6 12 3.269 3.125A59.769 59.769 0 0 1 21.485 12 59.768 59.768 0 0 1 3.27 20.875L5.999 12Zm0 0h7.5" />
+                    </svg>
+
+                    <p class="pl-4">Sign In</p>
+                </button>
                 <button
-                    class="w-4/11 bg-gray-100 text-gray-600 text-xl ml-5 rounded-xl cursor-pointer hover:shadow-xl hover:scale-[103%] duration-300 transition-all"
-                    @click="switchUser">Switch User</button>
+                    class="w-4/11 bg-gray-100 text-gray-600 text-xl ml-5 rounded-xl flex items-center  justify-center cursor-pointer hover:shadow-xl hover:scale-[103%] duration-300 transition-all"
+                    @click="switchUser">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                        stroke="currentColor" class="size-6">
+                        <path stroke-linecap="round" stroke-linejoin="round"
+                            d="M7.5 21 3 16.5m0 0L7.5 12M3 16.5h13.5m0-13.5L21 7.5m0 0L16.5 12M21 7.5H7.5" />
+                    </svg>
+                    <p class="pl-4">Switch</p>
+                </button>
             </div>
         </div>
     </div>
 </template>
 
-<style scoped></style>
+<style scoped>
+.fadein {
+    animation: fadeInAnimation ease 2s;
+    animation-iteration-count: 1;
+    animation-fill-mode: forwards;
+}
+
+.fadein-short {
+    animation: fadeInAnimation ease 1s;
+    animation-iteration-count: 1;
+    animation-fill-mode: forwards;
+}
+
+@keyframes fadeInAnimation {
+    0% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 100%;
+    }
+
+}
+</style>
