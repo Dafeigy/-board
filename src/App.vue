@@ -18,4 +18,8 @@ import Success from './pages/Success.vue';
   height: 80vh;
 }
 
+body{
+  background-color: #efefef;
+}
+
 </style>

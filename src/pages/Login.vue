@@ -1,4 +1,5 @@
 <script setup>
+import axios from 'axios';
 import { useRoute, useRouter } from 'vue-router'
 import { ref } from 'vue'
 import { useUserStore } from '../store/userStorage';
@@ -18,7 +19,7 @@ const loginpass = true
 console.log(isLogin.value);
 console.log(localStorage.getItem('auth'))
 // LOGIN AUTH should be rewrite here:
-const login = () => {
+const login = async () => {
     // This is has logined.
     if (isLogin.value) {
         router.push({ name: "Success" })
@@ -28,15 +29,20 @@ const login = () => {
     // Not has login. Try to login.
     // LOGIN AUTH LOGIC
     if (!isLogin.value) {
-        if (loginpass) {
-            const token = 'random_generated_token'; // 生成随机token
-            userStore.setToken(token, isRememberMe.value);
+        try {
+            const response = await axios.post('/token', null, {
+                params: {
+                    "username": userName.value,
+                    "password": userPassWord.value
+                }
+            });
+            handleLoginResponse(response.data);
+            userStore.setToken(response.data.access_token, isRememberMe.value);
             isLogin.value = true;
             router.push({ name: "Success" });
-            console.log(isLogin.value);
-        } else {
-            console.log(isLogin.value);
-            alert("Wrong pwd");
+        } catch (error) {
+            console.error('Login failed:', error);
+            alert("Wrong username or password");
         }
     }
 }
@@ -46,6 +52,17 @@ const switchUser = () => {
     loginUserInfo.value = null;
     userStore.clearAuth()
 }
+
+function handleLoginResponse(response) {
+    if (response.access_token) {
+        // 保存token到localStorage
+        localStorage.setItem('access_token', response.access_token);
+        console.log('Token saved successfully');
+    } else {
+        console.error('No access token received');
+    }
+}
+
 
 </script>
 <template>

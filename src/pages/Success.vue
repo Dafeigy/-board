@@ -11,14 +11,14 @@ const backhome = () => {
 
 </script>
 <template>
-    <div class="aspect-16-9 text-white h-[80%] items-center justify-center flex shadow-2xl fadein">
-        <div id="left" class="flex w-1/10 h-full bg-[#171527] rounded-l-2xl flex-col items-center justify-between">
+    <div class="aspect-16-9 text-white h-[80%] items-center justify-center flex shadow-2xl fadein rounded-2xl">
+        <div id="left" class="flex w-1/10 h-full bg-[#F4F6FA] rounded-l-2xl flex-col items-center justify-between">
             <div id="avatar"
                 class="aspect-square rounded-full w-3/7 bg-gradient-to-b from-blue-500 to-green-500 mt-[20%] shadow-2xl shadow-blue-400">
             </div>
             <div id="leftpannels" class="flex text-[#3d3c4c] flex-col w-full h-[50%] items-center">
                 <div
-                    class="hover:border hover:text-white hover:border-[#3b394b] hover:bg-gradient-to-b from-[#262537] to-[#272638] rounded-2xl overviews h-1/8 flex mt-4 justify-center items-center aspect-square cursor-pointer transition-all ease-in-out duration-400">
+                    class="hover:-translate-y-1 hover:scale-98 hover:bg-gradient-to-b from-[#F4F6FA] to-[#dadcdf] hover:transition-all  rounded-2xl overviews h-1/8 flex mt-4 justify-center items-center aspect-square cursor-pointer transition-all ease-in-out duration-400">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                         stroke="currentColor" class="size-6">
                         <path stroke-linecap="round" stroke-linejoin="round"
@@ -95,23 +95,23 @@ const backhome = () => {
                 </div>
             </div>
         </div>
-        <div id="middle" class="flex w-6/10 h-full bg-[#2e2c3c] justify-center items-center text-8xl">
+        <div id="middle" class="flex w-6/10 h-full bg-[#fff] justify-center items-center text-8xl">
             <div class="animate-pulse text-indigo-300">
                 TODO
             </div>
 
         </div>
-        <div id="right" class="flex w-3/10 h-full bg-[#313041] rounded-r-2xl justify-center items-center flex-col">
+        <div id="right" class="flex w-3/10 h-full bg-[#F4F6FA] rounded-r-2xl justify-center items-center flex-col">
             <div id="rtop" class="w-[80%] h-3/20 flex">
                 TODO
             </div>
             <div id="rmid" class="w-[80%] h-3/20 flex justify-around items-center">
-                <div class="w-1/4 h-[80%] bg-[#373545] rounded-xl flex justify-center items-center">1</div>
-                <div class="w-1/4 h-[80%] bg-[#373545] rounded-xl flex justify-center items-center">2</div>
-                <div class="w-1/4 h-[80%] bg-[#373545] rounded-xl flex justify-center items-center">3</div>
+                <div class="w-1/4 h-[80%] bg-[#fff] rounded-xl flex justify-center items-center shadow-xl ">1</div>
+                <div class="w-1/4 h-[80%] bg-[#fff] rounded-xl flex justify-center items-center shadow-xl ">2</div>
+                <div class="w-1/4 h-[80%] bg-[#fff] rounded-xl flex justify-center items-center shadow-xl ">3</div>
             </div>
             <div id="rbtm"
-                class="w-[80%] h-1/2 mt-10 flex justify-center items-center text-4xl rounded-2xl bg-[#373545]">
+                class="w-[80%] h-1/2 mt-10 flex justify-center items-center text-4xl rounded-2xl bg-[#fff] animate-pulse shadow-2xl">
                 ...
             </div>
         </div>
