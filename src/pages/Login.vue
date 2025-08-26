@@ -15,9 +15,14 @@ const userStore = useUserStore();
 const isLogin = ref(userStore.isLogin || localStorage.getItem('auth'))
 const loginUserInfo = ref(userStore.userInfo);
 
-const loginpass = true
-console.log(isLogin.value);
-console.log(localStorage.getItem('auth'))
+// console.log(isLogin.value);
+
+
+if (localStorage.getItem("auth")) {
+    var current_token = JSON.parse(localStorage.getItem('auth')).token;
+    console.log(JSON.parse(localStorage.getItem('auth')).token)
+    checkTokenValid(current_token)
+}
 // LOGIN AUTH should be rewrite here:
 const login = async () => {
     // This is has logined.
@@ -50,19 +55,38 @@ const login = async () => {
 const switchUser = () => {
     isLogin.value = false;
     loginUserInfo.value = null;
+    localStorage.removeItem('auth');
     userStore.clearAuth()
 }
 
 function handleLoginResponse(response) {
     if (response.access_token) {
         // 保存token到localStorage
-        localStorage.setItem('access_token', response.access_token);
+        // localStorage.setItem('access_token', response.access_token);
         console.log('Token saved successfully');
     } else {
         console.error('No access token received');
     }
 }
 
+async function checkTokenValid(token) {
+    try {
+        console.log("In checkTokenValid, token:")
+        console.log(token)
+        const response = await axios.get('/validate_token', {
+            headers: {
+                Authorization: "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxIiwiZXhwIjoxNzU2MjI1Nzk2fQ._QWqq8ApURJzpk6Y1GVCfdL6y2c75xMYHD3JpEZWKvU"
+            }
+        });
+        console.log(response.data)
+        // userStore.setToken(response.data.access_token, isRememberMe.value);
+        isLogin.value = true;
+        router.push({ name: "Success" });
+    } catch (error) {
+        console.error('Auth failed:', error);
+        // alert("Wrong username or password");
+    }
+}
 
 </script>
 <template>

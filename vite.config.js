@@ -24,6 +24,11 @@ export default defineConfig({
         target: 'http://localhost:8000/token',  //你要跨域访问的网址
         changeOrigin: true,   // 允许跨域
         rewrite: (path) => path.replace(/^\/token/, '') // 重写路径把路径变成空字符
+      },
+      '/validate_token': {
+        target: 'http://localhost:8000/validate_token',  //你要跨域访问的网址
+        changeOrigin: true,   // 允许跨域
+        rewrite: (path) => path.replace(/^\/validate_token/, '') // 重写路径把路径变成空字符
       }
     }
   }})
