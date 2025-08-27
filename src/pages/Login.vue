@@ -27,7 +27,7 @@ if (localStorage.getItem("auth")) {
 const login = async () => {
     // This is has logined.
     if (isLogin.value) {
-        router.push({ name: "Success" })
+        router.replace({path:'/Success'})
         console.log("Already login")
         console.log(isLogin.value);
     }
@@ -83,6 +83,8 @@ async function checkTokenValid(token) {
         isLogin.value = true;
         router.push({ name: "Success" });
     } catch (error) {
+        isLogin.value = false;
+        router.push({ name: "/" });
         console.error('Auth failed:', error);
         // alert("Wrong username or password");
     }
