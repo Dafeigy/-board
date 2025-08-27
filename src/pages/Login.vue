@@ -20,8 +20,8 @@ const loginUserInfo = ref(userStore.userInfo);
 
 if (localStorage.getItem("auth")) {
     var current_token = JSON.parse(localStorage.getItem('auth')).token;
-    console.log(JSON.parse(localStorage.getItem('auth')).token)
-    checkTokenValid(current_token)
+    console.log(JSON.parse(localStorage.getItem('auth')).token);
+    checkTokenValid(current_token);
 }
 // LOGIN AUTH should be rewrite here:
 const login = async () => {
@@ -35,7 +35,7 @@ const login = async () => {
     // LOGIN AUTH LOGIC
     if (!isLogin.value) {
         try {
-            const response = await axios.post('/token', null, {
+            const response = await axios.post('/api/token', null, {
                 params: {
                     "username": userName.value,
                     "password": userPassWord.value
@@ -73,9 +73,9 @@ async function checkTokenValid(token) {
     try {
         console.log("In checkTokenValid, token:")
         console.log(token)
-        const response = await axios.get('/validate_token', {
+        const response = await axios.get('/api/validate_token', {
             headers: {
-                Authorization: "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxIiwiZXhwIjoxNzU2MjI1Nzk2fQ._QWqq8ApURJzpk6Y1GVCfdL6y2c75xMYHD3JpEZWKvU"
+                "Authorization": `Bearer ${token}`
             }
         });
         console.log(response.data)
@@ -127,7 +127,7 @@ async function checkTokenValid(token) {
                     IN</button>
                 <p class="py-2">---------------------------or---------------------------</p>
                 <div id="othersLogin" class="flex w-full h-[70%] justify-around">
-                    <button class="w-[48%] px-2 h-[45%] bg-white border  text-xl text-gray" @click="toggle">
+                    <button class="w-[48%] px-2 h-[45%] bg-white border  text-xl text-gray cursor-pointer" @click="checkTokenValid(current_token)">
                         WeChat</button>
                     <button class="w-[48%] px-2 h-[45%] bg-white border  text-xl text-gray" @click="toggle"> QQ</button>
                 </div>

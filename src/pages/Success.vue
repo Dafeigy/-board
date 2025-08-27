@@ -2,6 +2,8 @@
 import { useRoute, useRouter } from 'vue-router';
 const router = useRouter()
 const backhome = () => {
+    localStorage.removeItem('auth');
+    // userStore.clearAuth()
     console.log(
         "hello"
     )
