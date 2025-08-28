@@ -31,8 +31,6 @@ const login = async () => {
         console.log("Already login")
         console.log(isLogin.value);
     }
-    // Not has login. Try to login.
-    // LOGIN AUTH LOGIC
     if (!isLogin.value) {
         try {
             const response = await axios.post('/api/token', null, {
@@ -81,11 +79,12 @@ async function checkTokenValid(token) {
         console.log(response.data)
         // userStore.setToken(response.data.access_token, isRememberMe.value);
         isLogin.value = true;
-        router.push({ name: "Success" });
+        // router.push({ name: "Success" });
     } catch (error) {
         isLogin.value = false;
         router.push({ name: "/" });
         console.error('Auth failed:', error);
+        userStore.clearAuth();
         // alert("Wrong username or password");
     }
 }
